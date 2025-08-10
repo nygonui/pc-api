@@ -9,7 +9,6 @@ dependencies = [
     "fastapi>=0.116.1",
     "orjson>=3.11.1",
     "python-decouple>=3.8",
-    "pytz>=2025.2",
     "secure>=1.0.1",
     "uvicorn[standard]>=0.35.0",
 ]

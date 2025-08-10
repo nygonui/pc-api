@@ -17,6 +17,13 @@ from app.settings import LOCAL, LOG_LEVEL, SERVER_HOST, SERVER_PORT
 
 
 def get_app() -> FastAPI:
+    """
+    Initializes and configures the FastAPI application.
+
+    This function sets up the basic metadata for the API
+    Returns:
+        FastAPI: The configured FastAPI application instance.
+    """
     app = FastAPI(
         title="Pioneiros da Colina",
         description="Pioneiros da Colina API for pathfinders management",
