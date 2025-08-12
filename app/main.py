@@ -29,9 +29,9 @@ def get_app() -> FastAPI:
         description="Pioneiros da Colina API for pathfinders management",
         version="0.1.0",
         contact={
-            "name": "Riza",
-            "email": "infra@rizaasset.com",
-            "url": "https://rizaasset.com",
+            "name": "Pioneiros da colina",
+            "email": "dev@rezendevitor.gmail.com",
+            "url": "https://pioneirosdacolina.com.br",
         },
         openapi_url="/openapi.json" if LOCAL else None,
         docs_url="/docs" if LOCAL else None,
