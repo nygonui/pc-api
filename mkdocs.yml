@@ -1,0 +1,30 @@
+site_name: Pioneiros da Colina API
+site_description: Documentação da API para gerenciamento de desbravadores.
+dev_addr: "127.0.0.1:3000"
+nav:
+  - Home: index.md
+  - Estrutura do Projeto: project_structure.md
+  - Arquitetura DDD: domain_driven_design.md
+  - Criando Novas Rotas: creating_routes.md
+theme:
+  name: material
+  language: pt
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+plugins:
+  - search
