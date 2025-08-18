@@ -6,6 +6,12 @@ nav:
   - Estrutura do Projeto: project_structure.md
   - Arquitetura DDD: domain_driven_design.md
   - Criando Novas Rotas: creating_routes.md
+  - Documentação API:
+      - Avaliação Regional: Avaliacao_Regional_doc.md
+      - Pontuação: pontuacao-doc.md
+      - Regional: Regioanl-doc.md
+      - Tesouraria: tesouraria-doc.md
+      - Patrimônio: patrimonio_doc.md
 theme:
   name: material
   language: pt

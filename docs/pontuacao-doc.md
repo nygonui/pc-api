@@ -4,11 +4,12 @@ Endpoints para exibir os rankings de desempenho das unidades e membros, e para p
 
 ## 1. Ranking
 
-Endpoints para buscar os dados de pontuação e exibir nos rankings.
+Endpoints para buscar os dados de pontuação e exibir nos rankings. **Todos os endpoints de ranking agora aceitam os parâmetros `ano` e `semestre` para filtrar os resultados.**
 
 * **`GET /ranking/unidades`**
-    * **Descrição:** Retorna a pontuação total de cada unidade para o ranking geral.
+    * **Descrição:** Retorna a pontuação total de cada unidade para o ranking geral, filtrada por ano e semestre.
     * **Uso:** Alimenta o card "Ranking Geral das Unidades" na aba "Ranking e Pontuação".
+    * **Query Params (Opcionais):** `?ano=2025&semestre=1`
     * **Resposta (Exemplo):**
         ```json
         [
@@ -24,8 +25,9 @@ Endpoints para buscar os dados de pontuação e exibir nos rankings.
         ```
 
 * **`GET /ranking/unidades/categorias`**
-    * **Descrição:** Retorna a pontuação de cada unidade, detalhada por cada categoria de pontuação.
+    * **Descrição:** Retorna a pontuação de cada unidade, detalhada por cada categoria de pontuação, filtrada por ano e semestre.
     * **Uso:** Alimenta o card "Ranking de Unidades por Categoria".
+    * **Query Params (Opcionais):** `?ano=2025&semestre=1`
     * **Resposta (Exemplo):**
         ```json
         {
@@ -41,8 +43,8 @@ Endpoints para buscar os dados de pontuação e exibir nos rankings.
         ```
 
 * **`GET /ranking/membros`**
-    * **Descrição:** Retorna a pontuação detalhada de cada membro para a tabela de ranking individual.
-    * **Query Params (Opcional):** `?cargo=Desbravador` (para filtrar por um cargo específico).
+    * **Descrição:** Retorna a pontuação detalhada de cada membro para a tabela de ranking individual, filtrada por ano, semestre e, opcionalmente, por cargo.
+    * **Query Params (Opcionais):** `?ano=2025&semestre=1&cargo=Desbravador`
     * **Uso:** Alimenta a tabela "Ranking Individual de Membros".
     * **Resposta (Exemplo):**
         ```json
