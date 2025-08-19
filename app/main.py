@@ -5,7 +5,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from app.api.exc import APIError, api_error_handler
 from app.api.routes import router
 from app.api.secure import secure_middleware
-from app.settings import LOCAL, LOG_LEVEL, SERVER_HOST, SERVER_PORT
+from app.settings import LOCAL, SERVER_HOST, SERVER_PORT, WORKERS
 
 # @asynccontextmanager
 # async def lifespan(app: FastAPI):
@@ -48,12 +48,17 @@ def get_app() -> FastAPI:
 app = get_app()
 
 if __name__ == "__main__":
-    import uvicorn
+    from granian.constants import Interfaces
+    from granian.log import LogLevels
+    from granian.server import Server
 
-    uvicorn.run(
+    Server(
         "app.main:app",
-        host=SERVER_HOST,
+        address=SERVER_HOST,
         port=SERVER_PORT,
-        reload=LOCAL,
-        log_level=LOG_LEVEL,
-    )
+        reload=False,
+        interface=Interfaces.ASGI,
+        log_access=True,
+        log_level=LogLevels.info,
+        workers=WORKERS,
+    ).serve()
