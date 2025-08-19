@@ -31,7 +31,7 @@ def get_app() -> FastAPI:
         contact={
             "name": "Pioneiros da colina",
             "email": "dev@rezendevitor.gmail.com",
-            "url": "https://pioneirosdacolina.com.br",
+            "url": "https://clubes.adventistas.org/br/aps/14062/pioneiros-da-colina/",
         },
         openapi_url="/openapi.json" if LOCAL else None,
         docs_url="/docs" if LOCAL else None,
