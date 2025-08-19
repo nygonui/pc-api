@@ -1,3 +1,5 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.responses import ORJSONResponse
 from starlette.middleware.base import BaseHTTPMiddleware
@@ -5,15 +7,24 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from app.api.exc import APIError, api_error_handler
 from app.api.routes import router
 from app.api.secure import secure_middleware
-from app.settings import LOCAL, SERVER_HOST, SERVER_PORT, WORKERS
+from app.infra.database.adapter import DatabaseAdapter, create_session_adapter
+from app.infra.database.config import DatabaseConfig
+from app.settings import (
+    DATABASE_CONFIG,
+    LOCAL,
+    SERVER_HOST,
+    SERVER_PORT,
+    WORKERS,
+)
 
-# @asynccontextmanager
-# async def lifespan(app: FastAPI):
-#     """Lifespan event handler for FastAPI"""
-#     database.warm()
-#     app.state._state = {}
-#     yield
-#     del app.state._state
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Lifespan event handler for FastAPI"""
+    app.state.session_adapter = await create_session_adapter(
+        DatabaseAdapter(config=DatabaseConfig(connection=DATABASE_CONFIG))
+    )
+    yield
 
 
 def get_app() -> FastAPI:
@@ -37,7 +48,7 @@ def get_app() -> FastAPI:
         docs_url="/docs" if LOCAL else None,
         redoc_url=None,
         default_response_class=ORJSONResponse,
-        # lifespan=lifespan,
+        lifespan=lifespan,
     )
     app.add_exception_handler(APIError, api_error_handler)  # pyright: ignore[reportArgumentType]]
     app.add_middleware(BaseHTTPMiddleware, dispatch=secure_middleware)

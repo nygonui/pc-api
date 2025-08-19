@@ -5,12 +5,16 @@ description = "Pioneiros da Colina API"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "asyncpg>=0.30.0",
     "email-validator>=2.2.0",
+    "escudeiro>=0.2.17",
     "fastapi>=0.116.1",
     "granian[uvloop]>=2.5.0",
     "orjson>=3.11.1",
     "python-decouple>=3.8",
     "secure>=1.0.1",
+    "sqlalchemy>=2.0.43",
+    "typeid-python>=0.3.2",
 ]
 
 [tool.ruff]
@@ -29,8 +33,26 @@ major_version_zero = true
 version_files = ["pyproject.toml:version"]
 annotated_tag = true
 
+[tool.basedpyright]
+typeCheckingMode = "recommended"
+reportAny = false
+reportCallInDefaultInitializer = false
+reportExplicitAny = false
+reportMissingTypeArgument = false
+reportUnknownArgumentType = false
+reportUnknownParameterType = false
+reportUnknownLambdaType = false
+reportUnknownVariableType = false
+reportUnknownMemberType = false
+reportMissingSuperCall = false
+reportMissingTypeStubs = false
+reportIncompatibleVariableOverride = false
+reportUnannotatedClassAttribute = false
+
+
 [dependency-groups]
 dev = [
+    "basedpyright>=1.31.2",
     "commitizen>=4.8.3",
     "httpx>=0.28.1",
     "mkdocs>=1.6.1",
