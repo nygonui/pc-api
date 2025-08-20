@@ -1,10 +1,10 @@
 from collections.abc import Awaitable, Callable
 from dataclasses import dataclass
+from functools import cached_property
 from typing import Any, cast
 
 import sqlalchemy as sa
 import sqlalchemy.ext.asyncio as sa_async
-from escudeiro.lazyfields import lazyfield
 from fastapi import Request
 
 from .config import DatabaseConfig
@@ -15,10 +15,10 @@ class DatabaseAdapter:
     config: DatabaseConfig
     debug: bool = False
 
-    @lazyfield
+    @cached_property
     def engine(self) -> sa_async.AsyncEngine:
         return sa_async.create_async_engine(
-            self.config.make_uri(is_asyncio=True).encode(),
+            self.config.make_uri(is_asyncio=True),
             pool_size=self.config.connection.pool.size,
             echo=self.debug,
             pool_recycle=self.config.connection.pool.recycle,
@@ -74,7 +74,7 @@ class DatabaseAdapter:
         """
         return client.in_transaction() or client.in_nested_transaction()
 
-    @lazyfield
+    @cached_property
     def session(self) -> "SessionAdapter":
         """
         Create a session adapter for the database connection.

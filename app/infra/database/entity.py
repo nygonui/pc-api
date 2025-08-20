@@ -1,8 +1,7 @@
-from datetime import datetime
+from datetime import UTC, datetime
 from typing import Any, ClassVar, NewType, final, override
 
 import sqlalchemy as sa
-from escudeiro.misc import timezone
 from sqlalchemy.orm import DeclarativeBase, Mapped, declared_attr, mapped_column
 from typeid import TypeID
 
@@ -58,9 +57,11 @@ class Entity(DeclarativeBase):
 class TimestampMixin:
     """Mixin class to add created_at and updated_at timestamps."""
 
-    created_at: Mapped[datetime] = mapped_column(default=timezone.now)
+    created_at: Mapped[datetime] = mapped_column(
+        default=lambda: datetime.now(UTC)
+    )
     updated_at: Mapped[datetime] = mapped_column(
-        default=timezone.now,
-        onupdate=timezone.now,
+        default=lambda: datetime.now(UTC),
+        onupdate=lambda: datetime.now(UTC),
     )
     deleted_at: Mapped[datetime | None] = mapped_column(default=None)
