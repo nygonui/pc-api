@@ -27,8 +27,7 @@ class ConnectionConfig(BaseModel):
 class DatabaseConfig:
     connection: ConnectionConfig
 
-    @lazymethod
-    def make_uri(self, *, is_asyncio: bool) -> URL:
+    def make_uri(self, *, is_asyncio: bool) -> str:
         """Create a database URI."""
         scheme = "postgresql+asyncpg" if is_asyncio else "postgresql+psycopg"
         return URL.from_args(
@@ -56,7 +55,7 @@ class DatabaseAdapter:
     config: DatabaseConfig
     debug: bool = False
 
-    @lazyfield
+    @cached_property
     def engine(self) -> sa_async.AsyncEngine:
         return sa_async.create_async_engine(
             self.config.make_uri(is_asyncio=True).encode(),
@@ -69,7 +68,7 @@ class DatabaseAdapter:
 
 Os principais métodos em `DatabaseAdapter` incluem:
 
-*   `engine`: Uma propriedade de carregamento "lazy" que cria o `AsyncEngine` do SQLAlchemy usando a URI do banco de dados e as configurações do pool.
+*   `engine`: Uma propriedade de cache que cria o `AsyncEngine` do SQLAlchemy usando a URI do banco de dados e as configurações do pool.
 *   `new()`: Estabelece uma nova conexão assíncrona (`AsyncConnection`) a partir do engine.
 *   `release()`: Fecha uma `AsyncConnection`.
 *   `aclose()`: Descarta o engine do banco de dados, fechando todas as conexões no pool.
