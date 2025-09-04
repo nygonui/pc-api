@@ -54,7 +54,7 @@ Endpoints para criar, editar e apagar alguma reunião.
 * **`DELETE /reunioes/{id_meeting}`**
   * **Descrição**: Remove uma reunião.
   * **Uso:** Botão de ação "Remover reunião" na aba Reuniões > Editar
-  * **Exemplos de resposta**:
+  * **Exemplo de resposta**:
     * **`status: 404`**
   
   ```json
