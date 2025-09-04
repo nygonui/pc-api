@@ -1,6 +1,6 @@
 # Documentação da API - Reuniões
 
-Endpoints para a criar, editar e apagar o cadastra de reuniões. E para a realização das chamadas de cada desbravador (por unidade) para cada reunião criada.
+Endpoints para criar, editar e apagar o cadastro de reuniões. E para a realização das chamadas de cada desbravador (por unidade) para cada reunião criada.
 
 ## 1. Reuniões
 
