@@ -88,7 +88,7 @@ Endpoints para registrar a chamada de cada desbravador por unidade e por reuniã
 * **mesmo endpoint de get reunião utilizado anteriormente**
 
 * **`GET /unidade?id=<ID>/membros`**
-  * **Descrição**: Retorna todos membros de uma unidade
+  * **Descrição**: Retorna todos os membros de uma unidade
   * **Query Params**: `?id=<ID>` é o ID da unidade
   * **Uso**: Na aba Reuniões > Chamada, após selecionar a unidade e a reunião é listado todos os membros dessa unidade.
   * **Resposta (exemplo):**
